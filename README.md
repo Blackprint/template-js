@@ -11,7 +11,7 @@ If Blackprint have an breaking changes (v0.\*.0), make sure to visit this templa
 
 ---
 
-## Getting started
+## Getting started building new nodes
  - Clone or create new repository with this template
  - Modify `blackprint.config.js` and change the `disabled` option into `false`
  - Choose one of the two method
@@ -27,6 +27,8 @@ The compiler will watch every changes inside this folder by following the config
 Before opening `.sf` file, please install the [syntax highlighter](https://github.com/StefansArya/scarletsframe-compiler/tree/master/syntax-highlighter) for your text editor.
 
 > BPIC = Blackprint Interface Component
+
+For another information like load/importing node for Browser/Node/Deno, please go to the [documentation](http://stefansarya.gitbook.io/blackprint).
 
 ---
 
