@@ -1,0 +1,16 @@
+{
+  "plugins": ["@babel/plugin-syntax-top-level-await"],
+  "presets": [
+    [
+      "@babel/preset-env", {
+        "targets": {
+          "chrome": "91",
+          "firefox": "90"
+        },
+        "modules": false,
+        "loose": false,
+        "shippedProposals": true
+      }
+    ]
+  ]
+}
