@@ -1,101 +1,93 @@
 // BPIC/LibraryName is prefix from blackprint.config.js
 // This file is just reference, you can remove unnecessary property/function
 
-// Node's logic, don't use browser's API or library here
-// Data processing or data/type assignment only
-Blackprint.registerNode('LibraryName/FeatureName/Template' function(node, iface){
-	iface.title = 'title';
-	iface.description = 'description';
+// Node will be initialized first by Blackprint Engine
+// This should be used for initialize port structure and set the target interface
+Blackprint.registerNode('LibraryName/FeatureName/Template',
+class MyTemplate extends Blackprint.Node{
+	// this == node
 
-	// Interface path
-	iface.interface = 'BPIC/LibraryName/FeatureName/Template';
+	constructor(instance){
+		super(instance);
 
-	// Unset 'iface.interface' if using default interface -> 'Blackprint/nodes/default'
-	// You don't need to '.registerInterface()' if using default interface
+		// Interface path
+		// Let it empty if you want to use default built-in interface
+		// You don't need to '.registerInterface()' if using default interface
+		let iface = this.setInterface('BPIC/LibraryName/FeatureName/Template');
+		iface.title = 'title';
+		iface.description = 'description';
 
-	// ToDo: fix comment
-	// If you want to use default template but want to '.registerInterface()'
-	// Then you must specify 'Blackprint/nodes/default' template when using '.registerInterface()'
-
-	node.output = {
-		Test: 123
-	};
+		this.output = {
+			Test: Blackprint.PortDefault(123, Number)
+		};
+	}
 
 	// Put logic as minimum as you can in .registerNode
 	// You can also put these function on .registerInterface instead
-	node.init = function(){
+	init(){
 		// Called before iface.init()
 	}
 
-	node.update = function(){
+	update(){
 		// Triggered when any output value from other node are updated
 		// And this node's input connected to that output
 	}
 
-	node.request = function(){
+	request(){
 		// Triggered when other connected node is requesting
 		// output from this node that have empty output
 	}
 
-	node.imported = function(){
+	imported(){
 		// When this node was successfully imported
 	}
 });
 
-// To be extended by Browser or Engine Interface (Optional)
-// Useful if you have similar logic for the browser and engine
-class PlaceHolder extends Blackprint.Node{
-	static construct(){
-		var iface = this;
-		console.log('ehlo', iface.title);
+// For Non-sketch interface
+// - first parameter is named path must use BPIC prefix
+// - second parameter is interface class, should be saved to Context.IFace if you want to access it on '.sf' files, because '.sf' is executed on different context
+Blackprint.registerInterface('BPIC/LibraryName/FeatureName/Template',
+Context.IFace.MyTemplate = class IMyTemplate extends Blackprint.Interface {
+	// this == iface
+
+	constructor(node){
+		super(node); // 'node' object from .registerNode
+
+		// Constructor for Interface can be executed twice when using Cloned Container
+		// If you're assigning data on this contructor, you should check if it already has the data
+		if(this.myData !== undefined) return;
+		this.myData = 123;
+		this._log = '...';
 	}
 
-	callMe(){
-		var iface = this;
-		console.log('hello', iface.title);
-	}
-}
-
-// Make it accessible to Template.sf
-Context.PlaceHolder = PlaceHolder;
-
-// For Non-browser (Optional)
-// - first parameter is named path
-// - second parameter is optional if using different settings
-// - third parameter can be placed on second parameter
-Blackprint.registerInterface('BPIC/LibraryName/FeatureName/Template', {
-	extend: PlaceHolder
-}, function(iface, bind){
-	/* Assume we're in Node.js or Deno environment */
-	// iface == node from .registerNode
-	// iface.node == node from .registerNode
-	// iface.callMe == extended from PlaceHolder
-
-	iface.init = function(){
+	init(){
 		// When Engine initializing this scope
+
+		// ====== Port Shortcut ======
+		const {
+			IInput, IOutput, IProperty, // Port interface
+			Input, Output, Property, // Port value
+		} = this.const;
+
+		// Port interface can be used for registering event listener
+		// Port value can be used for get/set the port value
+		// By the way, Property is reserved feature, don't use it
+
+		// this.output === IOutput
+		// this.input === IInput
+		// this.node.output === Output
+		// this.node.input === Input
+
+		// this.output.Test => Port Interface
+		// this.node.output.Test => Number value
 	}
 
-	// Usually (iface.log = 'something') would trigger interface change
-	// But Node.js/Deno environment doesn't have browser interface
-	// So we need to add callback when the value changes or being retrieved
-	// And trigger our API on Node.js or Deno
+	// Create custom getter and setter
+	get log(){
+		return this._log;
+	}
 
-	var log = '123';
-	bind({
-		get log(){
-			return log
-		},
-		set log(val){
-			log = val
-		},
-	});
-
-	// ====== Most feature is similar with browser's registerInterface ======
-	const {
-		IInput, IOutput, IProperty, // Port interface
-		Input, Output, Property, // Port value
-	} = iface.const;
-
-	var Node = iface.node; // 'node' object from .registerNode
-	// ...
+	set log(val){
+		this._log = val
+	}
 });

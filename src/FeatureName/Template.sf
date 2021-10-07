@@ -33,106 +33,124 @@ bpic-libraryname-featurename-template{
 // All script from .sf will be combined and wrapped depends on the configuration
 console.log("Hello from Template.sf");
 
-var abc = 123;
-window.abc === undefined; // If the script is wrapped
-// abc can be accessed from other .sf, but can't be accessed from .js when wrapped
-
-
 // Get the reference from Template.js
 let PlaceHolder = Context.PlaceHolder;
 
 
-// For Browser Interface, let ScarletsFrame handle this (HotReload available here)
+// For Sketch Interface, let ScarletsFrame handle this (HotReload available here)
 // - first parameter is HTML file path
 // - second parameter is optional if using different settings
 // - third parameter can be placed on second parameter
-Blackprint.Browser.registerInterface('BPIC/LibraryName/FeatureName/Template', {
-  extend: PlaceHolder,
-  // template: 'Blackprint/nodes/default.sf'
-}, function(iface){
-  /* You can use browser's API or library */
-  // iface == iface from .registerNode
-  // iface.node == node from .registerNode
-  // iface.callMe == extended from PlaceHolder
+Blackprint.Sketch.registerInterface('BPIC/LibraryName/FeatureName/Template',
+class IMyTemplate extends Context.IFace.MyTemplate {
+  // this == iface
 
-  // save any value on 'iface' so you can reuse it when this scope's hot reloaded
+  constructor(node){
+    super(node); // 'node' object from .registerNode
 
-  iface.init = function(){
-    // Run once
+    // Constructor for Interface can be executed twice when using Cloned Container
+    // If you're assigning data on this contructor, you should check if it already has the data
+    if(this.keepMe !== undefined) return;
+    this.keepMe = document.createElement('canvas');
+
+    // Any property on 'iface' can be binded with the HTML
+    this.log = '123'; // <div attr="{{ log }}">{{ log }}</div>
+  }
+
+  // Will run once the node element was attached to DOM tree
+  init(){
     // When ScarletsFrame initialized this HTML element
-    iface.keepMe = document.createElement('canvas');
 
-    // Maybe run it if the HTML element also refreshed
-    iface.hotReloaded();
-  }
-
-  iface.hotReloaded = function(){
     // Run everytime ScarletsFrame hot reload current scope
-    iface.$el('.content').append(iface.keepMe);
+    this.$el('.content').append(this.keepMe);
+
+
+    // === Shortcut to get/set node's port value ===
+    var IM = this; // Lazy Shortcut :3
+    // IM.init = function(){...}
+
+    const {
+      IInput, IOutput, IProperty, // Port interface
+      Input, Output, Property, // Port value
+    } = IM.const; // IM.const === this.const
+
+    // Update the port value
+    // Can be used for Output, Property
+    Output.PortName1 = 123;
+
+    // Get the port value
+    // Can be used for Input, Output, Property
+    Output.PortName1 = Input.PortName1;
+    Property.PortName2 = Property.PortName1;
+
+    // Node event listener can only be registered after node init
+    IM.on('cable.connect', function(port1, port2, cable){});
+
+    // Can be used for IInput, IOutput, IProperty
+    // Control the port interface (event listener, add new port, etc)
+    IInput.PortName1
+      // When connected output node have updated the value
+      // Also called after 'connect' event
+      .on('value', function(port2){})
+
+      // When this port are trying to connect with other node
+      .on('connecting', function(port1, port2, enable){
+        myLongTask(function(success){
+          if(success)
+            enable(true) // Cable will be activated
+          else enable(false) // Cable will be destroyed
+        });
+
+        // Empty = is like we're not giving the answer now
+        enable() // Mark as async
+
+        // Or destroy it now
+        // enable(false)
+      })
+
+      // When connection success
+      .on('connect', function(port1, port2, cable){})
+
+      // When connection closed
+      // not being called if the connection doesn't happen before
+      .on('disconnect', function(port1, port2, cable){});
+
+    // If you're using hot reload feature then you must call .off()
+    // To clear the old event listener
+    IInput.PortName1.off('value').on('value', function(port2){})
+
+    var Node = this.node; // 'node' object from .registerNode
+    // ...
   }
 
-  // Any property on 'iface' can be binded with the HTML
-  iface.log = '123'; // <div attr="{{ log }}">{{ log }}</div>
-  // On Intepreter we need to use "bind({get log, set log})"
+  /* Optional life cycle
 
-  // ==========================================================
-  // ====== Below can also be used for engine scope ======
-  // ==========================================================
+  destroy(){
+    this.init();
+  }
 
-  // === Shortcut to get/set node's port value ===
-  var IM = iface; // Lazy Shortcut :3
-  // IM.init = function(){...}
+  initClone(){
+    this.init();
+  }
 
-  const {
-    IInput, IOutput, IProperty, // Port interface
-    Input, Output, Property, // Port value
-  } = IM.const; // IM.const === iface.const
+  destroyClone(){
+    this.init();
+  }
 
-  // Update the port value
-  // Can be used for Output, Property
-  Output.PortName1 = 123;
+  // This must use ScarletsFrame Development mode
+  // Hot reload feature also must be activated
+  hotReload(){
+    console.log("Going to hot reload this object", this);
+    this.hotReloading === true;
+  }
 
-  // Get the port value
-  // Can be used for Input, Output, Property
-  Output.PortName1 = Input.PortName1;
-  Property.PortName2 = Property.PortName1;
+  hotReloaded(){
+    console.log("Hot reload active", this);
+  }
 
-  // Node event listener can only be registered after node init
-  IM.on('cable.connect', function(port1, port2, cable){});
+  hotReloadedHTML(){
+    console.log("HTML reload active", this);
+  }
 
-  // Can be used for IInput, IOutput, IProperty
-  // Control the port interface (event listener, add new port, etc)
-  IInput.PortName1
-    // When connected output node have updated the value
-    // Also called after 'connect' event
-    .on('value', function(port2){})
-
-    // When this port are trying to connect with other node
-    .on('connecting', function(port1, port2, enable){
-      myLongTask(function(success){
-        if(success)
-          enable(true) // Cable will be activated
-        else enable(false) // Cable will be destroyed
-      });
-
-      // Empty = is like we're not giving the answer now
-      enable() // Mark as async
-
-      // Or destroy it now
-      // enable(false)
-    })
-
-    // When connection success
-    .on('connect', function(port1, port2, cable){})
-
-    // When connection closed
-    // not being called if the connection doesn't happen before
-    .on('disconnect', function(port1, port2, cable){});
-
-  // If you're using hot reload feature then you must call .off()
-  // To clear the old event listener
-  IInput.PortName1.off('value').on('value', function(port2){})
-
-  var Node = iface.node; // 'node' object from .registerNode
-  // ...
+  */
 });
