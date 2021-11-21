@@ -28,7 +28,7 @@ var [ SFMediaStream ] = await imports([
 //> Optional, just for Blackprint Editor
 // Let the Blackprint Editor know the source URL where
 // the registerNode and registerInterface belongs to
-let Blackprint = window.Blackprint.LoadScope({
+let Blackprint = window.Blackprint.loadScope({
 	// You can find the URL on Blackprint menu -> Modules
 	// This will also be exported to JSON if this module's nodes is being used
 	url: import.meta.url,
@@ -38,4 +38,8 @@ let Blackprint = window.Blackprint.LoadScope({
 });
 
 // Global shared context
-let Context = Blackprint.ModuleContext('Your/Module/Name');
+let Context = Blackprint.getContext('Your/Module/Name');
+
+// This is needed to avoid duplicated event listener when using hot reload
+// Event listener that registered with same slot will be replaced
+Context.EventSlot = {slot: 'my-private-event-slot'};

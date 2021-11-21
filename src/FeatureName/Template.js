@@ -14,11 +14,19 @@ class MyTemplate extends Blackprint.Node{
 		// Let it empty if you want to use default built-in interface
 		// You don't need to '.registerInterface()' if using default interface
 		let iface = this.setInterface('BPIC/LibraryName/FeatureName/Template');
-		iface.title = 'title';
-		iface.description = 'description';
+		iface.title = 'My Title';
+		iface.description = 'My Description';
 
+		// You can use type data like Number/String or "Blackprint.Port"
+		// use "Blackprint.Port.Trigger" if it's callable port
+		this.input = {
+			PortName1: Blackprint.Port.Default(Number, 123)
+		};
+
+		// Output only accept 1 type data
+		// use "Function" if it's callable port
 		this.output = {
-			Test: Blackprint.PortDefault(123, Number)
+			PortName2: Number
 		};
 	}
 

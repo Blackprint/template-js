@@ -1,5 +1,5 @@
 {
-  "name": "your-node-name",
+  "name": "bp-your-library-name",
   "description": "Description for your Blackprint nodes",
   "version": "0.0.1",
   "license": "MIT",
@@ -9,11 +9,11 @@
   },
   "module": "dist/change-me.min.mjs",
   "scripts": {
-    "start": "blackprint build",
-    "build-prod": "blackprint build prod"
+    "start": "blackprint serve",
+    "build-prod": "blackprint build production"
   },
   "devDependencies": {
-    "@blackprint/cli-tools": "0.3.1"
+    "@blackprint/cli-tools": "0.3.x"
   },
   "keywords": [
     "blackprint"

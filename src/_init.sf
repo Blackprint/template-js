@@ -18,11 +18,11 @@
 
 // Because .js and .sf is separated
 // we also need to call LoadScope just like _init.js
-let Blackprint = window.Blackprint.LoadScope({
+let Blackprint = window.Blackprint.loadScope({
 	// You can find the URL on Blackprint menu -> Modules
 	// This will also be exported to JSON if this module's nodes is being used
 	url: import.meta.url,
 });
 
 // Global shared context
-let Context = Blackprint.ModuleContext('Your/Module/Name');
+let Context = Blackprint.getContext('Your/Module/Name');
