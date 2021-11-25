@@ -66,6 +66,22 @@ Context.IFace.MyTemplate = class IMyTemplate extends Blackprint.Interface {
 		if(this.myData !== undefined) return;
 		this.myData = 123;
 		this._log = '...';
+
+		// If the data was stored on this, they will be exported as JSON
+		// (Property name with _ or $ will be ignored)
+		this.data = {
+			get value(){ return this._value },
+			set value(val){ this._value = val },
+		};
+
+		// Creating object data with class is more recommended
+		// this.data = new MyDataStructure(this);
+	}
+
+	// When importing nodes from JSON, this function will be called
+	imported(data){
+		// Use object assign to avoid replacing the object reference (that makes our getter/setter gone)
+		Object.assign(this.data, data);
 	}
 
 	init(){
@@ -91,10 +107,7 @@ Context.IFace.MyTemplate = class IMyTemplate extends Blackprint.Interface {
 	}
 
 	// Create custom getter and setter
-	get log(){
-		return this._log;
-	}
-
+	get log(){ return this._log }
 	set log(val){
 		this._log = val
 	}
