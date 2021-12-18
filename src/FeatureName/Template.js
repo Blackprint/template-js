@@ -61,9 +61,6 @@ Context.IFace.MyTemplate = class IMyTemplate extends Blackprint.Interface {
 	constructor(node){
 		super(node); // 'node' object from .registerNode
 
-		// Constructor for Interface can be executed twice when using Cloned Container
-		// If you're assigning data on this contructor, you should check if it already has the data
-		if(this.myData !== undefined) return;
 		this.myData = 123;
 		this._log = '...';
 
@@ -89,13 +86,12 @@ Context.IFace.MyTemplate = class IMyTemplate extends Blackprint.Interface {
 
 		// ====== Port Shortcut ======
 		const {
-			IInput, IOutput, IProperty, // Port interface
-			Input, Output, Property, // Port value
+			IInput, IOutput, // Port interface
+			Input, Output, // Port value
 		} = this.const;
 
 		// Port interface can be used for registering event listener
 		// Port value can be used for get/set the port value
-		// By the way, Property is reserved feature, don't use it
 
 		// this.output === IOutput
 		// this.input === IInput
