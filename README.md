@@ -45,23 +45,24 @@ The versioning should follow this format v`MAJOR.MINOR.PATCH` when reach `v1.0.0
 Changes that are considered as breaking (case-sensitive):
  - Change on port name `(output -> Output)`
  - Port data type changes `Number -> String`
-   - If it was changed to `Any` or `Union` that contain original data type, it's not a breaking changes
+   - If it was changed to `Any` or `Union` that contain original data type, it's not a breaking changes (as the cable can still be connected)
  - Deleted node or renamed node `(Clear/Cahce -> Clear/Cache)`
    - Only for name registered with `.registerNode(...)`
- - Interface/node function changes
+ - Interface function changes (API changes)
    - Only if you provide an documentation to call that function when obtaining the nodes with
    - `iface.call = ... -> iface.trigger = ...`
-   - `node.call = ... -> node.trigger = ...`
+   - For private function please add "\_" underscore as first character
+ - Function inside Node class is considered as private/internal function
+   - `node.call = ... -> node.trigger = ...` = not breaking changes
 
-The example for `Interface/node function changes`.
+The example for `Interface function changes`.
 ```js
 // Let's assume you have created 'call' function and rename it to 'trigger'
-// in .registerNode('...') or .registerInterface('...')
-let button = engine.getNodes('...');
+// in .registerInterface('...')
+let button = engine.iface['iface-id'];
 
 // This will breaking due to changes
 button.call(); // -> button.trigger()
-button.iface.call(); // -> button.iface.trigger()
 ```
 
 ---
@@ -71,6 +72,32 @@ If you think it will have design changes or many breaking changes. The versionin
 **MAJOR version** always zero "0".<br>
 **MINOR version** when you add has new feature, or possible breaking changes.<br>
 **PATCH version** when you do bug fixes or add new feature that backwards compatible.<br>
+
+---
+
+You can also deploy on Vercel so you can easily import your node to online [Blackprint Editor](https://blackprint.github.io/) for testing purpose. For production or release, please publish it on NPM or your favorite CDN to avoid the compiled file get modified unexpectedly.
+
+Alright, let's remove the message above and start with the template below for the `README.md`.
+---
+
+[![NPM](https://img.shields.io/npm/v/bp-your-nodes.svg)](https://www.npmjs.com/package/bp-your-nodes)
+[![Build Status](https://github.com/your-name/bp-your-nodes/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/your-name/bp-your-nodes/actions/workflows/build.yml)
+
+## Your project name
+Description here
+
+## Import this nodes from URL
+Please specify the version to avoid breaking changes.
+
+```js
+Blackprint.loadModuleFromURL([
+  'https://cdn.jsdelivr.net/npm/bp-your-nodes@0.0.1/dist/nodes-rename-me.mjs'
+], {
+  // Turn this on if you want to load .sf.js, and .sf.css
+  // only with single .min.mjs
+  loadBrowserInterface: true // set to "false" for Node.js/Deno
+});
+```
 
 ### License
 MIT

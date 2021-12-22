@@ -36,18 +36,20 @@ class MyTemplate extends Blackprint.Node{
 		// Called before iface.init()
 	}
 
+	// This is more recomended than using event listener "port.value" or "value"
 	update(){
 		// Triggered when any output value from other node are updated
 		// And this node's input connected to that output
 	}
 
-	request(){
-		// Triggered when other connected node is requesting
-		// output from this node that have empty output
+	imported(data){
+		// When this node was successfully imported
+		// iface can also has this function feature, please use one only
 	}
 
-	imported(){
-		// When this node was successfully imported
+	request(port, sourceIface){
+		// Triggered when other connected node is requesting
+		// output from this node that have empty output
 	}
 });
 
@@ -100,6 +102,8 @@ Context.IFace.MyTemplate = class IMyTemplate extends Blackprint.Interface {
 
 		// this.output.Test => Port Interface
 		// this.node.output.Test => Number value
+
+		// For some event listener please see on ./Template.sf
 	}
 
 	// Create custom getter and setter
