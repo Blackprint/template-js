@@ -78,10 +78,11 @@ If you think it will have design changes or many breaking changes. The versionin
 You can also deploy on Vercel so you can easily import your node to online [Blackprint Editor](https://blackprint.github.io/) for testing purpose. For production or release, please publish it on NPM or your favorite CDN to avoid the compiled file get modified unexpectedly.
 
 Alright, let's remove the message above and start with the template below for the `README.md`.
+
 ---
 
 [![NPM](https://img.shields.io/npm/v/bp-your-nodes.svg)](https://www.npmjs.com/package/bp-your-nodes)
-[![Build Status](https://github.com/your-name/bp-your-nodes/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/your-name/bp-your-nodes/actions/workflows/build.yml)
+[![Build Status](https://github.com/blackprint/template-js/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/blackprint/template-js/actions/workflows/build.yml)
 
 ## Your project name
 Description here
