@@ -1,6 +1,6 @@
 This template contain an example that can be used for reference developing new Blackprint Module for Browser, Node.js, or Deno with ScarletsFrame compiler. Make sure you have modify the config file and remove the unused code when developing.
 
-You may find file that has below extension
+You may find file that has extension below:
  - `.sf`: to be exported for Browser only
  - `.js`: to be exported for Browser/Node.js/Deno
 
@@ -76,6 +76,15 @@ If you think it will have design changes or many breaking changes. The versionin
 ---
 
 You can also deploy on Vercel so you can easily import your node to online [Blackprint Editor](https://blackprint.github.io/) for testing purpose. For production or release, please publish it on NPM or your favorite CDN to avoid the compiled file get modified unexpectedly.
+
+**BUILD COMMAND**
+`npm run build-prod`
+
+**OUTPUT DIRECTORY**
+`.`
+
+**INSTALL COMMAND**
+`npm install`
 
 Alright, let's remove the message above and start with the template below for the `README.md`.
 
