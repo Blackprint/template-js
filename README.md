@@ -88,10 +88,11 @@ You can also deploy on Vercel so you can easily import your node to online [Blac
 
 Alright, let's remove the message above and start with the template below for the `README.md`.
 
+By the way, your must have "Import this nodes from URL" section on the README.md because it will being parsed by Blackprint Editor when being searched from NPM registry.
 ---
 
 [![NPM](https://img.shields.io/npm/v/bp-your-nodes.svg)](https://www.npmjs.com/package/bp-your-nodes)
-[![Build Status](https://github.com/blackprint/template-js/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/blackprint/template-js/actions/workflows/build.yml)
+[![Build Status](https://github.com/blackprint/template-js/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/blackprint/template-js/actions/workflows/build.yml)
 
 ## Your project name
 Description here
