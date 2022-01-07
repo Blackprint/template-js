@@ -95,7 +95,7 @@ Blackprint.loadModuleFromURL([
   'https://cdn.jsdelivr.net/npm/bp-your-nodes@0.0.1/dist/nodes-rename-me.mjs'
 ], {
   // Turn this on if you want to load .sf.js, and .sf.css
-  // only with single .min.mjs
+  // only with single .mjs
   loadBrowserInterface: true // set to "false" for Node.js/Deno
 });
 ```
