@@ -75,19 +75,6 @@ If you think it will have design changes or many breaking changes. The versionin
 
 ---
 
-You can also deploy on Netlify so you can easily import your node to online [Blackprint Editor](https://blackprint.github.io/) for testing purpose. For production or release, please publish it on NPM or your favorite CDN to avoid the compiled file get modified unexpectedly.
-
-**Base directory**
-`.`
-
-**Build command**
-`npm run build-prod`
-
-**Publish directory**
-`./`
-
-And make sure you have changed the site name on the settings.
-
 Alright, let's remove the message above and start with the template below for the `README.md`.
 
 By the way, your must have "Import this nodes from URL" section on the README.md because it will being parsed by Blackprint Editor when being searched from NPM registry.
@@ -115,7 +102,9 @@ Blackprint.loadModuleFromURL([
 
 ## Development URL
 You can use this link to load unpublished nodes and still under development on GitHub.
-> `https://bp-your-nodes.netlify.app/dist/nodes-rename-me.mjs`
+> `https://cdn.jsdelivr.net/gh/blackprint/template-js@dist/nodes-rename-me.mjs?1`
+
+Please append `/url-here?random-number` if your browser still using the cached files after the repository was updated.
 
 ### License
 MIT
