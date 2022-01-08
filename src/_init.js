@@ -1,10 +1,23 @@
 // This script will run first, and then the other files
 // depends on blackprint.config.js configuration
 
+//> Optional, just for Blackprint Editor
+// Let the Blackprint Editor know the source URL where
+// the registerNode and registerInterface belongs to
+let Blackprint = window.Blackprint.loadScope({
+	// You can find the URL on Blackprint menu -> Modules
+	// This will also be exported to JSON if this module's nodes is being used
+	url: import.meta.url,
+
+	// This will autoload (*.sf.mjs) and (*.sf.css) file for Browser
+	hasInterface: true,
+});
+
 // Prepare stuff when the page is loading
 // maybe like loading our dependencies for the nodes
 
 
+// Dependency should be loaded after Blackprint.loadScope
 /* Parallely load dependencies from CDN here (optional) */
 //>> imports(...) =>  sf.loader.mjs(...) or [import(..), ..];
 var [ SFMediaStream ] = await imports([
@@ -23,19 +36,6 @@ var [ SFMediaStream ] = await imports([
  */
 // await imports.task();
 
-
-
-//> Optional, just for Blackprint Editor
-// Let the Blackprint Editor know the source URL where
-// the registerNode and registerInterface belongs to
-let Blackprint = window.Blackprint.loadScope({
-	// You can find the URL on Blackprint menu -> Modules
-	// This will also be exported to JSON if this module's nodes is being used
-	url: import.meta.url,
-
-	// This will autoload (*.sf.mjs) and (*.sf.css) file for Browser
-	hasInterface: true,
-});
 
 // Global shared context
 let Context = Blackprint.createContext('Your/Module/Name');
