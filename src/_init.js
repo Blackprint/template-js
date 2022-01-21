@@ -38,7 +38,7 @@ var [ SFMediaStream ] = await imports([
 // await imports.task();
 
 
-// Global shared context
+// Global shared context (share to _init.sf)
 let Context = Blackprint.createContext('Your/Module/Name');
 
 // This is needed to avoid duplicated event listener when using hot reload
