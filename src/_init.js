@@ -1,7 +1,8 @@
 // This script will run first, and then the other files
 // depends on blackprint.config.js configuration
 
-//> Optional, just for Blackprint Editor
+//> Required, this should be run before importing modules
+//> Blackprint will know if it need to load other interface module
 // Let the Blackprint Editor know the source URL where
 // the registerNode and registerInterface belongs to
 let Blackprint = window.Blackprint.loadScope({

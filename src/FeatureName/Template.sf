@@ -88,7 +88,7 @@ class IMyTemplate extends Context.IFace.MyTemplate {
     const {
       IInput, IOutput, // Port interface
       Input, Output, // Port value
-    } = My.const; // My.const === this.const
+    } = My.ref; // My.ref === this.ref
 
     // Update the port value
     Output.PortName2 = 123; // This will also trigger 'value' event to connected input ports
@@ -102,8 +102,8 @@ class IMyTemplate extends Context.IFace.MyTemplate {
     IInput.PortName1
       // When connected output node have updated the value
       // Also called after 'connect' event
-      .on('value', Context.EventSlot, function(target){
-        console.log("PortName1:", target);
+      .on('value', Context.EventSlot, function(ev){
+        console.log("PortName1:", ev);
       })
 
       // When connection success

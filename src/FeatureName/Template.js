@@ -90,7 +90,7 @@ Context.IFace.MyTemplate = class IMyTemplate extends Blackprint.Interface {
 		const {
 			IInput, IOutput, // Port interface
 			Input, Output, // Port value
-		} = this.const;
+		} = this.ref;
 
 		// Port interface can be used for registering event listener
 		// Port value can be used for get/set the port value
