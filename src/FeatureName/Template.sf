@@ -57,9 +57,6 @@ class IMyTemplate extends Context.IFace.MyTemplate {
   constructor(node){
     super(node); // 'node' object from .registerNode
 
-    // Constructor for Interface can be executed twice when using Cloned Container
-    // If you're assigning data on this contructor, you should check if it already has the data
-    if(this.keepMe !== undefined) return;
     this.keepMe = $('<div>');
     this.keepMe.text("Hello world!");
     this.keepMe.css({
