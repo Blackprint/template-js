@@ -3,14 +3,14 @@ if(false){ // Avoid executing line below when this file being compiled
 
 Blackprint.registerNode("YourLibraryName/FeatureName/Empty",
 class EmptyNode extends Blackprint.Node {
+	static input = {};
+	static output = {};
+
 	constructor(instance){
 		super(instance);
 
 		let iface = this.setInterface();
 		iface.title = "Empty";
-
-		this.input = {};
-		this.output = {};
 	}
 });
 

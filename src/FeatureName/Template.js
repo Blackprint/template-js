@@ -7,6 +7,18 @@ Blackprint.registerNode('LibraryName/FeatureName/Template',
 class MyTemplate extends Blackprint.Node{
 	// this == node
 
+	// You can use type data like Number/String or "Blackprint.Port"
+	// use "Blackprint.Port.Trigger" if it's callable port
+	static input = {
+		PortName1: Blackprint.Port.Default(Number, 123)
+	};
+
+	// Output only accept 1 type data
+	// use "Function" if it's callable port
+	static output = {
+		PortName2: Number
+	};
+
 	constructor(instance){
 		super(instance);
 
@@ -16,18 +28,6 @@ class MyTemplate extends Blackprint.Node{
 		let iface = this.setInterface('BPIC/LibraryName/FeatureName/Template');
 		iface.title = 'My Title';
 		iface.description = 'My Description';
-
-		// You can use type data like Number/String or "Blackprint.Port"
-		// use "Blackprint.Port.Trigger" if it's callable port
-		this.input = {
-			PortName1: Blackprint.Port.Default(Number, 123)
-		};
-
-		// Output only accept 1 type data
-		// use "Function" if it's callable port
-		this.output = {
-			PortName2: Number
-		};
 	}
 
 	// Put logic as minimum as you can in .registerNode
