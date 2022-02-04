@@ -77,7 +77,7 @@ If you think it will have design changes or many breaking changes. The versionin
 
 Alright, let's remove the message above and start with the template below for the `README.md`.
 
-By the way, your must have "Import this nodes from URL" section on the README.md because it will being parsed by Blackprint Editor when being searched from NPM registry.
+By the way, you must specify your bundled module path in `blackprint` field from the `package.json` because it will being parsed by Blackprint Editor when being searched from NPM registry.
 
 ---
 

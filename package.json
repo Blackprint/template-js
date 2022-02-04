@@ -20,6 +20,11 @@
     "@blackprint/cli-tools": "0.3.x",
     "jest": "^27.4"
   },
+  "blackprint": {
+    "bundle": [
+      "dist/nodes-rename-me.mjs"
+    ]
+  },
   "keywords": [
     "blackprint"
   ]
