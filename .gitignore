@@ -1,1 +1,11 @@
+.git
+
 /dist/
+/node_modules/
+/jspm_packages/
+/web_modules/
+/bower_components/
+
+*.log
+*.tsbuildinfo
+*.tgz
