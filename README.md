@@ -22,7 +22,7 @@ If Blackprint have an breaking changes (v0.\*.0), make sure to visit this templa
      - `pnpm i -g @blackprint/cli-tools`
      - You can start the server with `blackprint serve`
      - It's already have hot reload, so you can modify your script quickly
-     - To enable to hot reload, you must connect Blackprint Editor to Blackprint module server
+     - To enable to hot reload, you must connect Blackprint Editor to remote module server
      - To compile modules for production you can use `blackprint build production`
 
 The compiler will watch every changes inside this folder by following the configuration in `blackprint.config.js`.
