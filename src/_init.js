@@ -21,10 +21,11 @@ let Blackprint = window.Blackprint.loadScope({
 // Dependency should be loaded after Blackprint.loadScope
 /* Parallely load dependencies from CDN here (optional) */
 //>> imports(...) =>  sf.loader.mjs(...) or [import(..), ..];
-var [ SFMediaStream ] = await imports([
-	// This is just an example, remove if not needed
-	"https://cdn.jsdelivr.net/npm/sfmediastream@latest"
-]);
+
+// This is just an example, remove if not needed
+// var [ SFMediaStream ] = await imports([
+// 	"https://cdn.jsdelivr.net/npm/sfmediastream@latest"
+// ]);
 
 
 /* or wait until the browser was loaded all script and the DOM was ready

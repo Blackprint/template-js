@@ -23,7 +23,7 @@ This file is just reference, you can remove unnecessary lines.
 // BPIC/LibraryName is prefix from blackprint.config.js
 
 // Element name based on html path, BPIC/LibraryName/FeatureName/Template.sf
-bpic-libraryname-featurename-template{
+bpic-libraryname-featurename-template {
   /* Write your scoped SCSS here */
   .design-me{
     color: yellow;

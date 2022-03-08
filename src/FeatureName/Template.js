@@ -4,7 +4,7 @@
 // Node will be initialized first by Blackprint Engine
 // This should be used for initialize port structure and set the target interface
 Blackprint.registerNode('LibraryName/FeatureName/Template',
-class MyTemplate extends Blackprint.Node{
+class MyTemplate extends Blackprint.Node {
 	// this == node
 
 	// You can use type data like Number/String or "Blackprint.Port"
@@ -51,6 +51,12 @@ class MyTemplate extends Blackprint.Node{
 		// Triggered when other connected node is requesting
 		// output from this node that have empty output
 	}
+
+	// Add support for remote sync (this will receive data from .syncOut)
+	syncIn(eventName, value){
+		if(eventName === 'data.value')
+			this.iface.data.value = value;
+	}
 });
 
 // For Non-sketch interface
@@ -69,8 +75,15 @@ Context.IFace.MyTemplate = class IMyTemplate extends Blackprint.Interface {
 		// If the data was stored on this, they will be exported as JSON
 		// (Property name with _ or $ will be ignored)
 		this.data = {
+			_iface: this,
 			get value(){ return this._value },
-			set value(val){ this._value = val },
+			set value(val){
+				this._value = val;
+
+				// Add support for remote sync: .syncOut(eventName, value);
+				// The data will be received in: syncIn(event, value);
+				this._iface.node.syncOut('data.value', val);
+			},
 		};
 
 		// Creating object data with class is more recommended
