@@ -41,6 +41,9 @@ jobs:
         run: npx blackprint build production
 
       - name: 🔥 Run Tests
+        # env:
+        #   YOUR_ENV_A: ${{ secrets.YOUR_ENV_A }}
+        #   YOUR_ENV_B: ${{ secrets.YOUR_ENV_B }}
         run: npm test
 
       - name: 🚀 Deploy
