@@ -16,9 +16,11 @@ require("@blackprint/sketch/dist/blackprint.min.js");
 require("@blackprint/sketch/dist/blackprint.sf.js");
 // === For Browser Environment ===
 
+// If you're ready to create unit test for your module
+// Please change `test.only()` into `test()`
 
 let instance = null;
-test('Blackprint.Sketch does exist on window', async () => {
+test.only('Blackprint.Sketch does exist on window', async () => {
 	expect(window.Blackprint.Sketch).toBeDefined();
 
 	// Create an instance where we can create nodes or import JSON
@@ -29,21 +31,20 @@ jest.setTimeout(60e3); // 1 minute
 
 // This may took longer to finish if also loading additional modules
 test("Load required modules", async () => {
-	// Force it as Node.js environment because we can't load module with URL
-	Blackprint.Environment.isBrowser = false;
-	Blackprint.Environment.isNode = true;
+	// Force to load module from node_modules
+	Blackprint.Environment.loadFromURL = false;
+
+	// Force to browser environment
+	Blackprint.Environment.isBrowser = true;
+	Blackprint.Environment.isNode = false;
 
 	// Alternative for Blackprint.loadModuleFromURL(...);
 	await import("../dist/nodes-rename-me.mjs"); // For Browser/Node.js
 	await import("../dist/nodes-rename-me.sf.mjs"); // For Browser UI
 
 	// Wait and avoid Jest's test environment being torn down
-	await Blackprint.getContext('Your/Module/Name');
+	await Blackprint.getContext('LibraryName');
 	await new Promise(resolve => setTimeout(resolve, 1000));
-
-	// Reset to browser environment
-	Blackprint.Environment.isBrowser = true;
-	Blackprint.Environment.isNode = false;
 
 	// Check if the nodes has been registered
 	expect(Blackprint.nodes['LibraryName']).toBeDefined();

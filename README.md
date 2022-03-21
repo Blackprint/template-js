@@ -1,3 +1,6 @@
+<details>
+  <summary>Make sure to delete this collapsed template detail</summary>
+
 This template contain an example that can be used for reference developing new Blackprint Module for Browser, Node.js, or Deno with ScarletsFrame compiler. Make sure you have modify the config file and remove the unused code when developing.
 
 You may find file that has extension below:
@@ -9,30 +12,15 @@ Currently this template is not using ES6 modules import system, you will need to
 
 If Blackprint have an breaking changes (v0.\*.0), make sure to visit this template again to see what was changed 😉
 
----
+## Getting started with the development
+Let's begin by replacing all placeholder inside of this template with your project name, for the example my project name is Keyboard and the repository is at `https://github.com/Blackprint/nodes-keyboard`.
+ - `LibraryName` => `Keyboard`
+ - `bp-your-module-name` => `@blackprint/nodes-keyboard`
+ - `nodes-rename-me` => `nodes-keyboard`
+ - `https://github.com/your/repository.git` => `https://github.com/Blackprint/nodes-keyboard.git`
+ - `/gh/blackprint/template-js@dist` => `/gh/Blackprint/nodes-keyboard@dist`
 
-## Getting started building new nodes
- - Clone or create new repository with this template
- - Modify `blackprint.config.js` and change the `disabled` option into `false`
- - Choose one of the two method
-   - Put the project folder inside `/Blackprint/nodes/...`
-     - Call `npm start` from `/Blackprint/` directory
-     - The editor, engine, and nodes will be watched together
-   - Use Blackprint CLI tools
-     - `pnpm i -g @blackprint/cli-tools`
-     - You can start the server with `blackprint serve`
-     - It's already have hot reload, so you can modify your script quickly
-     - To enable to hot reload, you must connect Blackprint Editor to remote module server
-     - To compile modules for production you can use `blackprint build production`
-
-The compiler will watch every changes inside this folder by following the configuration in `blackprint.config.js`.
-
-Before opening `.sf` file, please install the [syntax highlighter](https://github.com/StefansArya/scarletsframe-compiler/tree/master/syntax-highlighter) for your text editor.
-
-> BPIC = Blackprint Interface Component
-
-For another information like load/importing node for Browser/Node/Deno, please go to the [documentation](http://stefansarya.gitbook.io/blackprint).
-
+You can also remove `/src/FeatureName` if you already familiar with the template.
 ---
 
 ## Versioning Note
@@ -77,9 +65,11 @@ If you think it will have design changes or many breaking changes. The versionin
 
 Alright, let's remove the message above and start with the template below for the `README.md`.
 
-By the way, you must specify your bundled module path in `blackprint` field from the `package.json` because it will being parsed by Blackprint Editor when being searched from NPM registry.
+If you're distributing multiple different compiled file you need to specify the module's `source` path in `blackprint` field from the `package.json` because it will being parsed by Blackprint Editor to easily view source of your nodes. If you need example, you can view [@Blackprint/nodes](https://github.com/Blackprint/nodes/blob/master/package.json#L27).
 
 ---
+
+</details>
 
 [![NPM](https://img.shields.io/npm/v/bp-your-nodes.svg)](https://www.npmjs.com/package/bp-your-nodes)
 [![Build Status](https://github.com/blackprint/template-js/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/blackprint/template-js/actions/workflows/build.yml)
@@ -105,6 +95,28 @@ You can use this link to load unpublished nodes and still under development on G
 > `https://cdn.jsdelivr.net/gh/blackprint/template-js@dist/nodes-rename-me.mjs?1`
 
 Please append `/url-here?random-number` if your browser still using the cached files after the repository was updated.
+
+
+## Local module server for development
+```sh
+$ cd /your/project/folder
+$ git clone --depth 1 --recurse-submodules https://github.com/blackprint/nodes-rename-me.git .
+$ pnpm i
+$ npm start
+ >> [Browsersync] Access URLs:
+ >> -----------------------------------
+ >> Local: http://localhost:6789
+ >> -----------------------------------
+```
+
+Copy the `http://localhost:6789` URL and go to online Blackprint Editor. <br>
+Go to development mode, and paste it to remote module server. Then refresh the page, after that you can modify the code from your favorite text editor. The compiler will watch every changes inside this folder by following the configuration in `blackprint.config.js`.
+
+Before opening `.sf` file, please install the [syntax highlighter](https://github.com/StefansArya/scarletsframe-compiler/tree/master/syntax-highlighter) for your text editor.
+
+> BPIC = Blackprint Interface Component
+
+![brave_7NcrWUt66n](https://user-images.githubusercontent.com/11073373/159176092-7271f980-2a70-4e38-8830-e9746170426d.png)
 
 ### License
 MIT

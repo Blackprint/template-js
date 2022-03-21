@@ -1,7 +1,7 @@
 if(false){ // Avoid executing line below when this file being compiled
 // You can just copy and paste code below as a template for creating nodes
 
-Blackprint.registerNode("YourLibraryName/FeatureName/Empty",
+Blackprint.registerNode("LibraryName/FeatureName/Empty",
 class EmptyNode extends Blackprint.Node {
 	static input = {};
 	static output = {};
@@ -14,7 +14,7 @@ class EmptyNode extends Blackprint.Node {
 	}
 });
 
-Blackprint.registerInterface('BPIC/YourLibraryName/FeatureName/Empty',
+Blackprint.registerInterface('BPIC/LibraryName/FeatureName/Empty',
 Context.IFace.Empty = class EmptyIFace extends Blackprint.Interface{
 	constructor(node){
 		super(node);
@@ -23,7 +23,7 @@ Context.IFace.Empty = class EmptyIFace extends Blackprint.Interface{
 	}
 });
 
-Blackprint.Sketch.registerInterface('BPIC/YourLibraryName/FeatureName/Empty', {
+Blackprint.Sketch.registerInterface('BPIC/LibraryName/FeatureName/Empty', {
 	template: null
 }, Context.IFace.Empty);
 

@@ -28,6 +28,6 @@ let Blackprint = window.Blackprint.loadScope({
 let $ = sf.$;
 
 // Global shared context (wait it to avoid race condition)
-let Context = await Blackprint.getContext('Your/Module/Name');
+let Context = await Blackprint.getContext('LibraryName');
 
 // Context.EventSlot => shared from "_init.js"

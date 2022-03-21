@@ -23,9 +23,7 @@ module.exports = {
 	// and browser compatible node on ".sf" file extension
 	js:{
 		file:'@cwd/dist/nodes-rename-me.mjs', // @cwd = directory where you start the Node.js
-
-		// We're not using `await imports.task()` so let's just use `mjs`
-		wrapped: 'mjs', // Wrap the entire .js to .mjs
+		wrapped: 'async-mjs', // Wrap the entire .js to .mjs
 
 		combine:[ // Relative to this config's directory
 			'src/_init.js', // Rule order/index may have different priority

@@ -40,7 +40,7 @@ let Blackprint = window.Blackprint.loadScope({
 
 
 // Global shared context (share to _init.sf)
-let Context = Blackprint.createContext('Your/Module/Name');
+let Context = Blackprint.createContext('LibraryName');
 
 // This is needed to avoid duplicated event listener when using hot reload
 // Event listener that registered with same slot will be replaced
