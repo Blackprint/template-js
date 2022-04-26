@@ -71,7 +71,7 @@ If you're distributing multiple different compiled file you need to specify the 
 
 </details>
 
-[![NPM](https://img.shields.io/npm/v/bp-your-nodes.svg)](https://www.npmjs.com/package/bp-your-nodes)
+[![NPM](https://img.shields.io/npm/v/bp-your-module-name.svg)](https://www.npmjs.com/package/bp-your-module-name)
 [![Build Status](https://github.com/blackprint/template-js/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/blackprint/template-js/actions/workflows/build.yml)
 
 ## Your project name
@@ -82,7 +82,7 @@ Please specify the version to avoid breaking changes.
 
 ```js
 Blackprint.loadModuleFromURL([
-  'https://cdn.jsdelivr.net/npm/bp-your-nodes@0.0.1/dist/nodes-rename-me.mjs'
+  'https://cdn.jsdelivr.net/npm/bp-your-module-name@0.0.1/dist/nodes-rename-me.mjs'
 ], {
   // Turn this on if you want to load .sf.js, and .sf.css
   // only with single .mjs
