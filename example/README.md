@@ -1,0 +1,1 @@
+You can put exported example file (`.json`) in this folder.
