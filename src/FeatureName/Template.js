@@ -37,7 +37,7 @@ class MyTemplate extends Blackprint.Node {
 	}
 
 	// This is more recomended than using event listener "port.value" or "value"
-	update(){
+	update(cable){
 		// Triggered when any output value from other node are updated
 		// And this node's input connected to that output
 	}
@@ -47,7 +47,7 @@ class MyTemplate extends Blackprint.Node {
 		// iface can also has this function feature, please use one only
 	}
 
-	request(port, sourceIface){
+	request(cable){
 		// Triggered when other connected node is requesting
 		// output from this node that have empty output
 	}
