@@ -1,8 +1,4 @@
 module.exports = {
-	// Your unique package name, will be the prefix on the Blackprint editor
-	name: "Empty Template",
-	description: "Your awesome nodes",
-
 	// If this set to true, the compiler will skip this config/module
 	disabled: false,
 
