@@ -18,8 +18,9 @@
     "@blackprint/engine": "0.7.x",
     "@blackprint/sketch": "0.7.x",
     "@blackprint/cli-tools": "0.3.x",
-    "jest": "^28",
-    "jest-environment-jsdom": "^28.1.2"
+    "jest": "28.x",
+    "jest-environment-node": "28.x",
+    "jest-environment-jsdom": "28.x"
   },
   "keywords": [
     "blackprint"
