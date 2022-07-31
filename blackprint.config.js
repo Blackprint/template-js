@@ -1,4 +1,6 @@
 module.exports = {
+	name: "nodes-rename-me",
+
 	// If this set to true, the compiler will skip this config/module
 	disabled: false,
 
