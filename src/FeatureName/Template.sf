@@ -95,41 +95,37 @@ class IMyTemplate extends Context.IFace.MyTemplate {
     // Node event listener can only be registered after node init
     My.on('cable.connect', Context.EventSlot, function({ port, target, cable }){});
 
-    // Can be used for IInput, IOutput
-    // Control the port interface (event listener, add new port, etc)
-    IInput.PortName1
-      // When connected output node have updated the value
-      // Also called after 'connect' event
-      .on('value', Context.EventSlot, function(ev){
+    // Event listener can be registered for IInput, IOutput
+    IInput.PortName1.on('value', Context.EventSlot, function(ev){
         console.log("PortName1:", ev);
+
+	      // If have changed output port's value inside this listener
+        // you may also need to trigger route out `iface.node.routes.routeOut();`
       })
 
-      // When connection success
+      // When the port connected with other port
       .on('connect', Context.EventSlot, function({ port, target, cable }){})
 
-      // When connection closed
-      // not being called if the connection doesn't happen before
+      // When the port disconnected with other port
       .on('disconnect', Context.EventSlot, function({ port, target, cable }){});
 
     function myLongTask(callback){
       setTimeout(()=> callback(true), 1000);
     }
 
-    IOutput.PortName2
-      // When this port are trying to connect with other node
-      .on('connecting', Context.EventSlot, function({ port, target, activate }){
-        myLongTask(function(success){
-          if(success)
-            activate(true) // Cable will be activated
-          else activate(false) // Cable will be destroyed
-        });
+    // When this port are trying to connect with other node
+    IOutput.PortName2.on('connecting', Context.EventSlot, function({ port, target, activate }){
+      myLongTask(function(success){
+        if(success) activate(true); // Cable will be activated
+        else activate(false); // Cable will be destroyed
+      });
 
-        // Empty = is like we're not giving the answer now
-        activate() // Mark as async
+      // Empty = is like we're not giving the answer now
+      activate() // Mark as async
 
-        // Or destroy it now
-        // activate(false)
-      })
+      // Or destroy it now
+      // activate(false)
+    })
 
     // ...
   }

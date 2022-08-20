@@ -37,6 +37,7 @@ class MyTemplate extends Blackprint.Node {
 	}
 
 	// This is more recomended than using event listener "port.value" or "value"
+	// If you want to trigger this manually, you may also need to trigger route out `this.routes.routeOut();`
 	update(cable){
 		// Triggered when any output value from other node are updated
 		// And this node's input connected to that output
