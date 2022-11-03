@@ -47,7 +47,7 @@ let PlaceHolder = Context.PlaceHolder;
 // Please also use capitalization on the file name
 
 
-// For Sketch Interface, let ScarletszFrame handle this (HotReload available here)
+// For Sketch Interface, let ScarletsFrame handle this (HotReload available here)
 // - first parameter is HTML file path
 // - second parameter is optional if using different settings
 // - third parameter can be placed on second parameter
