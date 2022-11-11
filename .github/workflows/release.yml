@@ -23,7 +23,7 @@ jobs:
       - name: ⚙ Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: lts/*
           registry-url: https://registry.npmjs.org/
 
       - name: 🔃 Setup PNPM modules
@@ -57,7 +57,6 @@ jobs:
       # If you want to publish to NPM, make sure to put your NPM token to repository settings
       - name: 📦 Publish Packages
         if: github.event.inputs.dryRun != 'true'
-        run: npm publish
-        # run: npm publish --access=public
+        run: npm publish --access=public # Change this to private if you just want to access it privately
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
