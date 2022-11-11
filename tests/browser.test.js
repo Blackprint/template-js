@@ -2,11 +2,12 @@
  * @jest-environment jsdom
  */
 
-require("@blackprint/engine");
-
 // === For Browser Environment ===
 window.ResizeObserver = class{};
 window.sf = require("scarletsframe/dist/scarletsframe.min.js");
+
+// Load engine after the framework, let the engine know we're going to import Sketch
+require("@blackprint/engine");
 
 // Disable loader for browser, because we're testing with Node.js
 sf.loader.turnedOff = true;
