@@ -18,6 +18,11 @@ module.exports = {
 	// Optional: Extract registerNode's JSDocs
 	bpDocs: '@cwd/dist/nodes-rename-me.docs.json',
 
+	hotReload: {
+		sf: true,
+		js: true,
+	},
+
 	// (Required)
 	// The .js file probably can be imported for non-browser too
 	// Maybe you want to write Node.js compatible node on ".js"

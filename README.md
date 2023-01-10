@@ -16,7 +16,7 @@ This template contain an example that can be used for reference developing new B
 
 You may find file that has extension below:
  - `.sf`: to be exported for Browser only
- - `.js`: to be exported for Browser/Node.js/Deno
+ - `.mjs`: to be exported for Browser/Node.js/Deno
 
 ## Note
 Currently this template is not using ES6 modules import system, you will need to use CDN link to load a library. If you have better idea for the Browser/Node.js/Deno import system, lets discuss it on Blackprint repository :)
@@ -71,6 +71,8 @@ If you're distributing multiple different compiled file you need to specify the 
 
 ---
 
+Feel free to change the LICENSE from this template.
+
 </details>
 
 [![NPM](https://img.shields.io/npm/v/bp-your-module-name.svg)](https://www.npmjs.com/package/bp-your-module-name) [![Build Status](https://github.com/blackprint/template-js/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/blackprint/template-js/actions/workflows/build.yml)
@@ -85,7 +87,7 @@ Please specify the version to avoid breaking changes.
 Blackprint.loadModuleFromURL([
   'https://cdn.jsdelivr.net/npm/bp-your-module-name@0.0.1/dist/nodes-rename-me.mjs'
 ], {
-  // Turn this on if you want to load .sf.js, and .sf.css
+  // Turn this on if you want to load .sf.mjs, and .sf.css
   // only with single .mjs
   loadBrowserInterface: true // set to "false" for Node.js/Deno
 });
@@ -93,10 +95,9 @@ Blackprint.loadModuleFromURL([
 
 ## Development URL
 You can use this link to load unpublished nodes and still under development on GitHub.
-> `https://cdn.jsdelivr.net/gh/blackprint/template-js@dist/nodes-rename-me.mjs?1`
+https://cdn.jsdelivr.net/gh/blackprint/template-js@dist/nodes-rename-me.mjs
 
-Please append `/url-here?random-number` if your browser still using the cached files after the repository was updated.
-
+Replace `dist` with your latest commit hash (from `dist` branch) to avoid cache from CDN.
 
 ## Local module server for development
 ```sh
