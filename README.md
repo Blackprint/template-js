@@ -2,24 +2,25 @@
   <summary>Make sure to delete this collapsed template detail</summary>
 
 ## Getting started with the development
-Please use `blackprint create` for getting started.
+Please use install the `cli-tools` and create new module from template for getting started.
 
 ```sh
-npm i -g @blackprint/cli-tools
+$ npm i -g @blackprint/cli-tools
+$ blackprint create
 ```
 
-After you cloned this template, you can also remove `/src/FeatureName` if you already familiar with the template.
+If you're using VSCode this template also contain a code snippets on `.vscode` folder, make sure to check the prefix on how to trigger the code snippet's template.
 
 ---
 
-This template contain an example that can be used for reference developing new Blackprint Module for Browser, Node.js, or Deno with ScarletsFrame compiler. Make sure you have modify the config file and remove the unused code when developing.
+The template contain an example that can be used for reference developing new Blackprint Module for Browser, Node.js, or Deno with ScarletsFrame compiler. Make sure you have modify the config file and remove the unused code when developing. An node example on `/src/FeatureName` folder can also be deleted if you're already familiar with Blackprint.
 
-You may find file that has extension below:
- - `.sf`: to be exported for Browser only
- - `.mjs`: to be exported for Browser/Node.js/Deno
+In the `src`, you may find file that has extension below:
+ - `*.sf`: to be exported for Browser only
+ - `*.js`: to be exported for Browser/Node.js/Deno
 
 ## Note
-Currently this template is not using ES6 modules import system, you will need to use CDN link to load a library. If you have better idea for the Browser/Node.js/Deno import system, lets discuss it on Blackprint repository :)
+Currently this template is not using ES6 modules import system, you will need to use CDN link to load a library. if you're prefer to use ES6 module import, then TypeScript template should be your choice.
 
 If Blackprint have an breaking changes (v0.\*.0), make sure to visit this template again to see what was changed 😉
 
@@ -71,7 +72,7 @@ If you're distributing multiple different compiled file you need to specify the 
 
 ---
 
-Feel free to change the LICENSE from this template.
+Feel free to change the LICENSE from this template, as this template is just a template for your new project.
 
 </details>
 
